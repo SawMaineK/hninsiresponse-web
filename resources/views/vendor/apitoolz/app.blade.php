@@ -10,8 +10,8 @@
     </style>
 		<link rel="preconnect" href="https://fonts.gstatic.com" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
-    <script type="module" crossorigin src="/assets/index-BboZw9bD.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-D5HESF-r.css">
+    <script type="module" crossorigin src="/assets/index-De4LVn6h.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BvSqcGBP.css">
   </head>
   <body class="antialiased flex h-full text-base text-gray-700" style="overflow:visible !important; margin-right:0 !important; position:static !important;">
     <div class="flex grow" id="root"></div>
