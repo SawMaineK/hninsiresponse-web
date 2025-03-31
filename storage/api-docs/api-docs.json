@@ -1,0 +1,1877 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/city": {
+            "get": {
+                "tags": [
+                    "City"
+                ],
+                "summary": "Get a list of city with dynamic filtering, sorting, pagination, and advanced search",
+                "operationId": "c2504917c4da1139bffc3dd1d5409f8f",
+                "parameters": [
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "description": "Dynamic filtering with multiple fields (e.g., `status:active|age:gt:30`)",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Full-text search (e.g., `keywords`)",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Sort the results by a specific field (e.g., `price` or `name`)",
+                        "schema": {
+                            "type": "string",
+                            "example": "created_at"
+                        }
+                    },
+                    {
+                        "name": "sort_dir",
+                        "in": "query",
+                        "description": "Direction of sorting (asc or desc)",
+                        "schema": {
+                            "type": "string",
+                            "default": "asc",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number for pagination (default: 1)",
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Number of items per page (default: 10)",
+                        "schema": {
+                            "type": "integer",
+                            "default": 10
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CityResource"
+                                            }
+                                        },
+                                        "meta": {
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer"
+                                                },
+                                                "per_page": {
+                                                    "type": "integer"
+                                                },
+                                                "total": {
+                                                    "type": "integer"
+                                                },
+                                                "next_page_url": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "prev_page_url": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "last_page": {
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "City"
+                ],
+                "summary": "Store a new city",
+                "operationId": "a8227d5bf6c485aeef4f403040f32ecc",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CityRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "City created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CityResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/city/{id}": {
+            "get": {
+                "tags": [
+                    "City"
+                ],
+                "summary": "Get a specific city",
+                "operationId": "5a7b6766b61b35c52ccb43edd7a33259",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "City ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CityResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "City"
+                ],
+                "summary": "Update a specific city",
+                "operationId": "d0af268d4633a5d5a5714dd23ecdec69",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "City ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CityRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "City updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CityResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "City"
+                ],
+                "summary": "Delete a city",
+                "operationId": "20163308af9adc11a49d350825877375",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "City ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "City deleted successfully"
+                    }
+                }
+            }
+        },
+        "/api/city/{id}/restore": {
+            "put": {
+                "tags": [
+                    "City"
+                ],
+                "summary": "Restore a deleted city",
+                "operationId": "e3f4d1b6e94745838eeca0bb152fd57e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "City ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "City restored successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The record has been restored successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/city/{id}/force-destroy": {
+            "delete": {
+                "tags": [
+                    "City"
+                ],
+                "summary": "Permanently delete a city",
+                "operationId": "06f83877ea7e199a9b35aeb8afad2ce3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "City ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "City permanently deleted"
+                    }
+                }
+            }
+        },
+        "/api/incident": {
+            "get": {
+                "tags": [
+                    "Incident"
+                ],
+                "summary": "Get a list of incident with dynamic filtering, sorting, pagination, and advanced search",
+                "operationId": "b975e78781a2350de78f7f94e96c68c4",
+                "parameters": [
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "description": "Dynamic filtering with multiple fields (e.g., `status:active|age:gt:30`)",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Full-text search (e.g., `keywords`)",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Sort the results by a specific field (e.g., `price` or `name`)",
+                        "schema": {
+                            "type": "string",
+                            "example": "created_at"
+                        }
+                    },
+                    {
+                        "name": "sort_dir",
+                        "in": "query",
+                        "description": "Direction of sorting (asc or desc)",
+                        "schema": {
+                            "type": "string",
+                            "default": "asc",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number for pagination (default: 1)",
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Number of items per page (default: 10)",
+                        "schema": {
+                            "type": "integer",
+                            "default": 10
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/IncidentResource"
+                                            }
+                                        },
+                                        "meta": {
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer"
+                                                },
+                                                "per_page": {
+                                                    "type": "integer"
+                                                },
+                                                "total": {
+                                                    "type": "integer"
+                                                },
+                                                "next_page_url": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "prev_page_url": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "last_page": {
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Incident"
+                ],
+                "summary": "Store a new incident",
+                "operationId": "659f08fa44a0fcde6391af30131e18ad",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IncidentRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Incident created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IncidentResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/incident/{id}": {
+            "get": {
+                "tags": [
+                    "Incident"
+                ],
+                "summary": "Get a specific incident",
+                "operationId": "6a2164c7b9171a64b8289556b1a722c1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Incident ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IncidentResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Incident"
+                ],
+                "summary": "Update a specific incident",
+                "operationId": "34fa1beb3b1cb940df2a5844aa883cf1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Incident ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IncidentRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Incident updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IncidentResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Incident"
+                ],
+                "summary": "Delete a incident",
+                "operationId": "d7527ae55638767e884ee2d193104c27",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Incident ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Incident deleted successfully"
+                    }
+                }
+            }
+        },
+        "/api/incident/{id}/restore": {
+            "put": {
+                "tags": [
+                    "Incident"
+                ],
+                "summary": "Restore a deleted incident",
+                "operationId": "6a7b4f67b3710b91ebcd207623b3224a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Incident ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Incident restored successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The record has been restored successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/incident/{id}/force-destroy": {
+            "delete": {
+                "tags": [
+                    "Incident"
+                ],
+                "summary": "Permanently delete a incident",
+                "operationId": "9650f1c4d8c4e1b5f07a4903ed47b0fb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Incident ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Incident permanently deleted"
+                    }
+                }
+            }
+        },
+        "/api/region": {
+            "get": {
+                "tags": [
+                    "Region"
+                ],
+                "summary": "Get a list of region with dynamic filtering, sorting, pagination, and advanced search",
+                "operationId": "0c51f58df055e5721d4627d15b7ceb04",
+                "parameters": [
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "description": "Dynamic filtering with multiple fields (e.g., `status:active|age:gt:30`)",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Full-text search (e.g., `keywords`)",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Sort the results by a specific field (e.g., `price` or `name`)",
+                        "schema": {
+                            "type": "string",
+                            "example": "created_at"
+                        }
+                    },
+                    {
+                        "name": "sort_dir",
+                        "in": "query",
+                        "description": "Direction of sorting (asc or desc)",
+                        "schema": {
+                            "type": "string",
+                            "default": "asc",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number for pagination (default: 1)",
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Number of items per page (default: 10)",
+                        "schema": {
+                            "type": "integer",
+                            "default": 10
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/RegionResource"
+                                            }
+                                        },
+                                        "meta": {
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer"
+                                                },
+                                                "per_page": {
+                                                    "type": "integer"
+                                                },
+                                                "total": {
+                                                    "type": "integer"
+                                                },
+                                                "next_page_url": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "prev_page_url": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "last_page": {
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Region"
+                ],
+                "summary": "Store a new region",
+                "operationId": "ecd6f6bccf8409fa68563eeb8dad122d",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegionRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Region created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RegionResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/region/{id}": {
+            "get": {
+                "tags": [
+                    "Region"
+                ],
+                "summary": "Get a specific region",
+                "operationId": "936672c6b1827058659d1796787c13c0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Region ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RegionResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Region"
+                ],
+                "summary": "Update a specific region",
+                "operationId": "7141803d2fcfcf13c52928729e78ad03",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Region ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegionRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Region updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RegionResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Region"
+                ],
+                "summary": "Delete a region",
+                "operationId": "3982e32c404e6a6446ce94ac638b3881",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Region ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Region deleted successfully"
+                    }
+                }
+            }
+        },
+        "/api/region/{id}/restore": {
+            "put": {
+                "tags": [
+                    "Region"
+                ],
+                "summary": "Restore a deleted region",
+                "operationId": "860a617f673317a574bc689a3d517d03",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Region ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Region restored successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The record has been restored successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/region/{id}/force-destroy": {
+            "delete": {
+                "tags": [
+                    "Region"
+                ],
+                "summary": "Permanently delete a region",
+                "operationId": "9d25030266bc6bf35caa324b23f05e71",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Region ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Region permanently deleted"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Login to your account",
+                "operationId": "d511077b3fd4847de98644ced5925e12",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    },
+                    "202": {
+                        "description": "2FA Required",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid credentials"
+                    },
+                    "429": {
+                        "description": "Too many OTP requests"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Register a new user",
+                "operationId": "faba288b85a56b71fe98f37300c55aa0",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User registered",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid data"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/api/edit-profile": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Update user profile",
+                "operationId": "ad807656841145113cb3a3950f9fedfd",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProfileRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Profile updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user": {
+            "get": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Get authenticated user",
+                "operationId": "87e839ede1a61ff109b02ef41f8b119b",
+                "responses": {
+                    "200": {
+                        "description": "Authenticated user details",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/change-password": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Change user password",
+                "operationId": "77a8e3139a05f00a77749a3e63d98ba6",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChangePasswordRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Password changed successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Password changed successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/forgot-password": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Request password reset link",
+                "operationId": "50db4a5e5547a8553226be106449b2d2",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ForgotPasswordRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Password reset link sent"
+                    },
+                    "400": {
+                        "description": "Invalid email"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/api/reset-password": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Reset password using token",
+                "operationId": "7b4cfca3862f3fad7dac0646b3a74f12",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ResetPasswordRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Password reset successful"
+                    },
+                    "400": {
+                        "description": "Invalid token or email"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Logout user",
+                "operationId": "c31093f0af2d37ce5a83ee8a9ef56da6",
+                "responses": {
+                    "204": {
+                        "description": "Logout successful"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/verify-2fa": {
+            "post": {
+                "tags": [
+                    "Two-Factor Authentication"
+                ],
+                "summary": "Verify 2FA OTP",
+                "operationId": "f04873b4d7d7f1f1df22f9a680568318",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Verify2FARequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "2FA Verified Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid OTP"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/resend-2fa": {
+            "post": {
+                "tags": [
+                    "Two-Factor Authentication"
+                ],
+                "summary": "Resend 2FA OTP",
+                "operationId": "4e5b02309943fd57aab1efa1bbbc0304",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user@example.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OTP resent successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/enable-2fa": {
+            "post": {
+                "tags": [
+                    "Two-Factor Authentication"
+                ],
+                "summary": "Enable Two-Factor Authentication",
+                "operationId": "d9fbf4ba68b3c9b46d58c9091f0f62a9",
+                "responses": {
+                    "200": {
+                        "description": "2FA Enabled Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "2FA Already Enabled"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/disable-2fa": {
+            "post": {
+                "tags": [
+                    "Two-Factor Authentication"
+                ],
+                "summary": "Disable Two-Factor Authentication",
+                "operationId": "5bce99612a997afa85b601cabd133d8a",
+                "responses": {
+                    "200": {
+                        "description": "2FA Disabled Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "2FA Already Disabled"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CityRequest": {
+                "required": [
+                    ""
+                ],
+                "properties": {
+                    "region_id": {
+                        "type": "integer",
+                        "example": "5"
+                    },
+                    "name_en": {
+                        "type": "string",
+                        "example": "Name_en Example"
+                    },
+                    "name_mm": {
+                        "type": "string",
+                        "example": "Name_mm Example"
+                    },
+                    "code": {
+                        "type": "string",
+                        "example": "Code Example"
+                    }
+                },
+                "type": "object"
+            },
+            "IncidentRequest": {
+                "required": [
+                    ""
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "example": "Title Example"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Name Example"
+                    },
+                    "photo": {
+                        "type": "string",
+                        "example": "Photo Example"
+                    },
+                    "post_by_name": {
+                        "type": "string",
+                        "example": "Post_by_name Example"
+                    },
+                    "post_by_phone": {
+                        "type": "string",
+                        "example": "Post_by_phone Example"
+                    },
+                    "post_by_email": {
+                        "type": "string",
+                        "example": "Post_by_email Example"
+                    },
+                    "related_to": {
+                        "type": "string",
+                        "example": "Related_to Example"
+                    },
+                    "condition": {
+                        "type": "string",
+                        "example": "Condition Example"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Description Example"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Address Example"
+                    },
+                    "city_id": {
+                        "type": "integer",
+                        "example": "16"
+                    },
+                    "township_id": {
+                        "type": "integer",
+                        "example": "17"
+                    },
+                    "country_id": {
+                        "type": "integer",
+                        "example": "95"
+                    },
+                    "latitude": {
+                        "type": "string",
+                        "example": "Latitude Example"
+                    },
+                    "longitude": {
+                        "type": "string",
+                        "example": "Longitude Example"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "Status Example"
+                    },
+                    "severity": {
+                        "type": "string",
+                        "example": "Severity Example"
+                    },
+                    "other_condition": {
+                        "type": "string",
+                        "example": "Other_condition Example"
+                    }
+                },
+                "type": "object"
+            },
+            "RegionRequest": {
+                "required": [
+                    ""
+                ],
+                "properties": {
+                    "name_en": {
+                        "type": "string",
+                        "example": "Name_en Example"
+                    },
+                    "name_mm": {
+                        "type": "string",
+                        "example": "Name_mm Example"
+                    },
+                    "code": {
+                        "type": "string",
+                        "example": "Code Example"
+                    }
+                },
+                "type": "object"
+            },
+            "CityResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "88"
+                    },
+                    "region_id": {
+                        "type": "integer",
+                        "example": "39"
+                    },
+                    "name_en": {
+                        "type": "string",
+                        "example": "Name_en Example"
+                    },
+                    "name_mm": {
+                        "type": "string",
+                        "example": "Name_mm Example"
+                    },
+                    "code": {
+                        "type": "string",
+                        "example": "Code Example"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-03-31 09:14:28"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-03-31 09:14:28"
+                    }
+                },
+                "type": "object"
+            },
+            "IncidentResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "48"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Title Example"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Name Example"
+                    },
+                    "photo": {
+                        "type": "string",
+                        "example": "Photo Example"
+                    },
+                    "post_by_name": {
+                        "type": "string",
+                        "example": "Post_by_name Example"
+                    },
+                    "post_by_phone": {
+                        "type": "string",
+                        "example": "Post_by_phone Example"
+                    },
+                    "post_by_email": {
+                        "type": "string",
+                        "example": "Post_by_email Example"
+                    },
+                    "related_to": {
+                        "type": "string",
+                        "example": "Related_to Example"
+                    },
+                    "condition": {
+                        "type": "string",
+                        "example": "Condition Example"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Description Example"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Address Example"
+                    },
+                    "city_id": {
+                        "type": "integer",
+                        "example": "67"
+                    },
+                    "township_id": {
+                        "type": "integer",
+                        "example": "53"
+                    },
+                    "country_id": {
+                        "type": "integer",
+                        "example": "50"
+                    },
+                    "latitude": {
+                        "type": "string",
+                        "example": "Latitude Example"
+                    },
+                    "longitude": {
+                        "type": "string",
+                        "example": "Longitude Example"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "Status Example"
+                    },
+                    "severity": {
+                        "type": "string",
+                        "example": "Severity Example"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-03-31 14:46:38"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-03-31 14:46:38"
+                    },
+                    "other_condition": {
+                        "type": "string",
+                        "example": "Other_condition Example"
+                    }
+                },
+                "type": "object"
+            },
+            "RegionResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "62"
+                    },
+                    "name_en": {
+                        "type": "string",
+                        "example": "Name_en Example"
+                    },
+                    "name_mm": {
+                        "type": "string",
+                        "example": "Name_mm Example"
+                    },
+                    "code": {
+                        "type": "string",
+                        "example": "Code Example"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-03-31 09:12:31"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-03-31 09:12:31"
+                    }
+                },
+                "type": "object"
+            },
+            "ChangePasswordRequest": {
+                "title": "Change Password Request",
+                "description": "Request payload for changing password",
+                "required": [
+                    "current_password",
+                    "new_password",
+                    "new_password_confirmation"
+                ],
+                "properties": {
+                    "current_password": {
+                        "type": "string",
+                        "format": "password",
+                        "example": "oldpassword123"
+                    },
+                    "new_password": {
+                        "type": "string",
+                        "format": "password",
+                        "example": "newpassword123"
+                    },
+                    "new_password_confirmation": {
+                        "type": "string",
+                        "format": "password",
+                        "example": "newpassword123"
+                    }
+                },
+                "type": "object"
+            },
+            "ForgotPasswordRequest": {
+                "required": [
+                    "email"
+                ],
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "john@example.com"
+                    }
+                },
+                "type": "object"
+            },
+            "LoginRequest": {
+                "title": "Login Request",
+                "description": "Login request payload",
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "john@example.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "0912345678",
+                        "nullable": true
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "password",
+                        "example": "password123"
+                    }
+                },
+                "type": "object"
+            },
+            "ProfileRequest": {
+                "title": "Profile Update Request",
+                "description": "Request payload for updating user profile",
+                "required": [
+                    "name",
+                    "email"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "John Doe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "john@example.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "0912345678",
+                        "nullable": true
+                    },
+                    "gender": {
+                        "type": "string",
+                        "example": "Male",
+                        "nullable": true
+                    },
+                    "dob": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "1990-05-15",
+                        "nullable": true
+                    },
+                    "avatar": {
+                        "type": "string",
+                        "example": "profile.jpg",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "RegisterRequest": {
+                "title": "Register Request",
+                "description": "User registration request payload",
+                "required": [
+                    "name",
+                    "email",
+                    "password",
+                    "password_confirmation"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "John Doe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "john@example.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "0912345678",
+                        "nullable": true
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "password",
+                        "example": "password123"
+                    },
+                    "password_confirmation": {
+                        "type": "string",
+                        "format": "password",
+                        "example": "password123"
+                    }
+                },
+                "type": "object"
+            },
+            "ResetPasswordRequest": {
+                "required": [
+                    "email",
+                    "token",
+                    "password",
+                    "password_confirmation"
+                ],
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "john@example.com"
+                    },
+                    "token": {
+                        "type": "string",
+                        "example": "random-reset-token"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "password",
+                        "example": "newpassword123"
+                    },
+                    "password_confirmation": {
+                        "type": "string",
+                        "format": "password",
+                        "example": "newpassword123"
+                    }
+                },
+                "type": "object"
+            },
+            "UserResponse": {
+                "title": "User Response",
+                "description": "User object returned after authentication or profile update",
+                "required": [
+                    "id",
+                    "name",
+                    "email",
+                    "created_at",
+                    "updated_at"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "John Doe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "john@example.com"
+                    },
+                    "email_verified_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": null,
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-02-06T13:14:43.000000Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-02-06T13:14:43.000000Z"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "0912345678"
+                    },
+                    "gender": {
+                        "type": "string",
+                        "example": null,
+                        "nullable": true
+                    },
+                    "dob": {
+                        "type": "string",
+                        "format": "date",
+                        "example": null,
+                        "nullable": true
+                    },
+                    "avatar": {
+                        "type": "string",
+                        "example": "profile.jpg"
+                    },
+                    "personal_access_token": {
+                        "type": "string",
+                        "example": "1|FFHC6zVeRubW9lw3gkVK8tTO6DgZCc9cQCc4tOLp9270111c"
+                    }
+                },
+                "type": "object"
+            },
+            "Verify2FARequest": {
+                "required": [
+                    "email",
+                    "otp"
+                ],
+                "properties": {
+                    "email": {
+                        "description": "User email address",
+                        "type": "string",
+                        "format": "email",
+                        "example": "user@example.com"
+                    },
+                    "otp": {
+                        "description": "One-time password (OTP) for 2FA verification",
+                        "type": "string",
+                        "maxLength": 6,
+                        "minLength": 4,
+                        "example": "123456"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "apiAuth": {
+                "type": "http",
+                "description": "Login with email and password to get the authentication token",
+                "name": "Token Based Authentication",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "City",
+            "description": "City"
+        },
+        {
+            "name": "Incident",
+            "description": "Incident"
+        },
+        {
+            "name": "Region",
+            "description": "Region"
+        },
+        {
+            "name": "Account",
+            "description": "Account"
+        },
+        {
+            "name": "Two-Factor Authentication",
+            "description": "Two-Factor Authentication"
+        }
+    ]
+}
