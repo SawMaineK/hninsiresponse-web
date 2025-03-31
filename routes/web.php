@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Sawmainek\Apitoolz\Http\Controllers\FileStorageController;
 
 Route::view('/{path?}', 'apitoolz::app');
 
