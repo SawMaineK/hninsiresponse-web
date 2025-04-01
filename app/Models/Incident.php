@@ -101,5 +101,21 @@ class Incident extends Model
     }
 
     
+    /**
+     * Get the township that owns the .
+     */
+    public function township()
+    {
+        return $this->belongsTo('App\Models\City','township_id');
+    }
+    
+    /**
+     * Get the city that owns the .
+     */
+    public function city()
+    {
+        return $this->belongsTo('App\Models\Region','city_id');
+    }
+    
 
 }

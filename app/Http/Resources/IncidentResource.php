@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * @OA\Schema(
  *     schema="IncidentResource",
- *     @OA\Property(property="id", type="integer", example="48"),
+ *     @OA\Property(property="id", type="integer", example="59"),
  *     @OA\Property(property="title", type="string", example="Title Example"),
  *     @OA\Property(property="name", type="string", example="Name Example"),
  *     @OA\Property(property="photo", type="string", example="Photo Example"),
@@ -18,15 +18,15 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="condition", type="string", example="Condition Example"),
  *     @OA\Property(property="description", type="string", example="Description Example"),
  *     @OA\Property(property="address", type="string", example="Address Example"),
- *     @OA\Property(property="city_id", type="integer", example="67"),
- *     @OA\Property(property="township_id", type="integer", example="53"),
- *     @OA\Property(property="country_id", type="integer", example="50"),
+ *     @OA\Property(property="city_id", type="integer", example="49"),
+ *     @OA\Property(property="township_id", type="integer", example="29"),
+ *     @OA\Property(property="country_id", type="integer", example="1"),
  *     @OA\Property(property="latitude", type="string", example="Latitude Example"),
  *     @OA\Property(property="longitude", type="string", example="Longitude Example"),
  *     @OA\Property(property="status", type="string", example="Status Example"),
  *     @OA\Property(property="severity", type="string", example="Severity Example"),
- *     @OA\Property(property="created_at", type="string", format="date-time", example="2025-03-31 14:46:38"),
- *     @OA\Property(property="updated_at", type="string", format="date-time", example="2025-03-31 14:46:38"),
+ *     @OA\Property(property="created_at", type="string", format="date-time", example="2025-04-01 04:46:01"),
+ *     @OA\Property(property="updated_at", type="string", format="date-time", example="2025-04-01 04:46:01"),
  *     @OA\Property(property="other_condition", type="string", example="Other_condition Example")
  * )
  */
@@ -62,7 +62,9 @@ class IncidentResource extends JsonResource
 			'severity' => $this->severity,
 			'created_at' => $this->created_at,
 			'updated_at' => $this->updated_at,
-			'other_condition' => $this->other_condition
+			'other_condition' => $this->other_condition,
+			'township' => new CityResource($this->township),
+			'city' => new RegionResource($this->city)
         ];
     }
 }

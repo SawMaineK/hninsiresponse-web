@@ -1369,15 +1369,15 @@
                     },
                     "city_id": {
                         "type": "integer",
-                        "example": "16"
+                        "example": "90"
                     },
                     "township_id": {
                         "type": "integer",
-                        "example": "17"
+                        "example": "50"
                     },
                     "country_id": {
                         "type": "integer",
-                        "example": "95"
+                        "example": "94"
                     },
                     "latitude": {
                         "type": "string",
@@ -1461,7 +1461,7 @@
                 "properties": {
                     "id": {
                         "type": "integer",
-                        "example": "48"
+                        "example": "59"
                     },
                     "title": {
                         "type": "string",
@@ -1505,15 +1505,15 @@
                     },
                     "city_id": {
                         "type": "integer",
-                        "example": "67"
+                        "example": "49"
                     },
                     "township_id": {
                         "type": "integer",
-                        "example": "53"
+                        "example": "29"
                     },
                     "country_id": {
                         "type": "integer",
-                        "example": "50"
+                        "example": "1"
                     },
                     "latitude": {
                         "type": "string",
@@ -1534,12 +1534,12 @@
                     "created_at": {
                         "type": "string",
                         "format": "date-time",
-                        "example": "2025-03-31 14:46:38"
+                        "example": "2025-04-01 04:46:01"
                     },
                     "updated_at": {
                         "type": "string",
                         "format": "date-time",
-                        "example": "2025-03-31 14:46:38"
+                        "example": "2025-04-01 04:46:01"
                     },
                     "other_condition": {
                         "type": "string",
