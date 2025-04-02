@@ -21,14 +21,15 @@ use Illuminate\Http\Exceptions\HttpResponseException;
  *     @OA\Property(property="condition", type="string", example="Condition Example"),
  *     @OA\Property(property="description", type="string", example="Description Example"),
  *     @OA\Property(property="address", type="string", example="Address Example"),
- *     @OA\Property(property="city_id", type="integer", example="90"),
- *     @OA\Property(property="township_id", type="integer", example="50"),
- *     @OA\Property(property="country_id", type="integer", example="94"),
+ *     @OA\Property(property="city_id", type="integer", example="21"),
+ *     @OA\Property(property="township_id", type="string", example="Township_id Example"),
+ *     @OA\Property(property="country_id", type="integer", example="13"),
  *     @OA\Property(property="latitude", type="string", example="Latitude Example"),
  *     @OA\Property(property="longitude", type="string", example="Longitude Example"),
  *     @OA\Property(property="status", type="string", example="Status Example"),
  *     @OA\Property(property="severity", type="string", example="Severity Example"),
- *     @OA\Property(property="other_condition", type="string", example="Other_condition Example")
+ *     @OA\Property(property="other_condition", type="string", example="Other_condition Example"),
+ *     @OA\Property(property="type", type="string", example="Type Example")
  * )
  */
 
@@ -44,7 +45,7 @@ class IncidentRequest extends FormRequest
         return [
 			'title'=>'required',
 			'name'=>'required',
-			'photo'=>'required|file|max:102400',
+			'photo'=>'sometimes|file|max:102400',
 			'post_by_name'=>'required',
 			'post_by_phone'=>'required',
 			'post_by_email'=>'',
@@ -53,7 +54,7 @@ class IncidentRequest extends FormRequest
 			'description'=>'',
 			'address'=>'',
 			'city_id'=>'required',
-			'township_id'=>'required',
+			'township_id'=>'',
 			'country_id'=>'required',
 			'latitude'=>'',
 			'longitude'=>'',
@@ -62,6 +63,7 @@ class IncidentRequest extends FormRequest
 			'created_at'=>'',
 			'updated_at'=>'',
 			'other_condition'=>'',
+			'type'=>'required',
 
         ];
     }

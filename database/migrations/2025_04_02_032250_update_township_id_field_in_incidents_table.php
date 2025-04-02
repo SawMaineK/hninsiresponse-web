@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('incidents', function (Blueprint $table) {
-			$table->string('other_condition')->nullable()->after('condition');
+			$table->string('township_id')->nullable()->after('city_id')->change(); 
+
 
         });
     }
@@ -26,8 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('incidents', function (Blueprint $table) {
-            $table->dropColumn('other_condition');
-        });
+
     }
 };

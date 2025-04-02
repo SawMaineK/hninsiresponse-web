@@ -1369,15 +1369,15 @@
                     },
                     "city_id": {
                         "type": "integer",
-                        "example": "90"
+                        "example": "21"
                     },
                     "township_id": {
-                        "type": "integer",
-                        "example": "50"
+                        "type": "string",
+                        "example": "Township_id Example"
                     },
                     "country_id": {
                         "type": "integer",
-                        "example": "94"
+                        "example": "13"
                     },
                     "latitude": {
                         "type": "string",
@@ -1398,6 +1398,10 @@
                     "other_condition": {
                         "type": "string",
                         "example": "Other_condition Example"
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "Type Example"
                     }
                 },
                 "type": "object"
@@ -1461,7 +1465,7 @@
                 "properties": {
                     "id": {
                         "type": "integer",
-                        "example": "59"
+                        "example": "22"
                     },
                     "title": {
                         "type": "string",
@@ -1505,15 +1509,15 @@
                     },
                     "city_id": {
                         "type": "integer",
-                        "example": "49"
+                        "example": "6"
                     },
                     "township_id": {
-                        "type": "integer",
-                        "example": "29"
+                        "type": "string",
+                        "example": "Township_id Example"
                     },
                     "country_id": {
                         "type": "integer",
-                        "example": "1"
+                        "example": "83"
                     },
                     "latitude": {
                         "type": "string",
@@ -1534,16 +1538,20 @@
                     "created_at": {
                         "type": "string",
                         "format": "date-time",
-                        "example": "2025-04-01 04:46:01"
+                        "example": "2025-04-02 10:52:00"
                     },
                     "updated_at": {
                         "type": "string",
                         "format": "date-time",
-                        "example": "2025-04-01 04:46:01"
+                        "example": "2025-04-02 10:52:00"
                     },
                     "other_condition": {
                         "type": "string",
                         "example": "Other_condition Example"
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "Type Example"
                     }
                 },
                 "type": "object"

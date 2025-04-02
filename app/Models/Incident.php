@@ -23,7 +23,7 @@ class Incident extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'title', 'name', 'photo', 'post_by_name', 'post_by_phone', 'post_by_email', 'related_to', 'condition', 'description', 'address', 'city_id', 'township_id', 'country_id', 'latitude', 'longitude', 'status', 'severity', 'created_at', 'updated_at', 'other_condition'
+        'id', 'title', 'name', 'photo', 'post_by_name', 'post_by_phone', 'post_by_email', 'related_to', 'condition', 'description', 'address', 'city_id', 'township_id', 'country_id', 'latitude', 'longitude', 'status', 'severity', 'created_at', 'updated_at', 'other_condition', 'type'
     ];
 
     /**
@@ -32,7 +32,7 @@ class Incident extends Model
      * @var array
      */
     protected $searchable = [
-        'id', 'title', 'name', 'photo', 'post_by_name', 'post_by_phone', 'post_by_email', 'related_to', 'condition', 'description', 'address', 'city_id', 'township_id', 'country_id', 'latitude', 'longitude', 'status', 'severity', 'created_at', 'updated_at', 'other_condition'
+        'id', 'title', 'name', 'photo', 'post_by_name', 'post_by_phone', 'post_by_email', 'related_to', 'condition', 'description', 'address', 'city_id', 'township_id', 'country_id', 'latitude', 'longitude', 'status', 'severity', 'created_at', 'updated_at', 'other_condition', 'type'
     ];
 
     /**
@@ -52,7 +52,7 @@ class Incident extends Model
     protected function casts(): array
     {
         return [
-            'id' => 'integer', 'title' => 'string', 'name' => 'string', 'photo' => 'object', 'post_by_name' => 'string', 'post_by_phone' => 'string', 'post_by_email' => 'string', 'related_to' => 'string', 'condition' => 'string', 'description' => 'string', 'address' => 'string', 'city_id' => 'integer', 'township_id' => 'integer', 'country_id' => 'integer', 'latitude' => 'float', 'longitude' => 'float', 'status' => 'string', 'severity' => 'string', 'created_at' => 'datetime', 'updated_at' => 'datetime', 'deleted_at' => 'datetime', 'other_condition' => 'string'
+            'id' => 'integer', 'title' => 'string', 'name' => 'string', 'photo' => 'object', 'post_by_name' => 'string', 'post_by_phone' => 'string', 'post_by_email' => 'string', 'related_to' => 'string', 'condition' => 'string', 'description' => 'string', 'address' => 'string', 'city_id' => 'integer', 'township_id' => 'integer', 'country_id' => 'integer', 'latitude' => 'float', 'longitude' => 'float', 'status' => 'string', 'severity' => 'string', 'created_at' => 'datetime', 'updated_at' => 'datetime', 'deleted_at' => 'datetime', 'other_condition' => 'string', 'type' => 'string'
         ];
     }
 
@@ -96,7 +96,8 @@ class Incident extends Model
 			'severity' => $this->severity,
 			'created_at' => $this->created_at,
 			'updated_at' => $this->updated_at,
-			'other_condition' => $this->other_condition
+			'other_condition' => $this->other_condition,
+			'type' => $this->type
         ];
     }
 
