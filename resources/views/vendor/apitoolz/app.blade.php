@@ -18,8 +18,8 @@
     </style>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
-  <script type="module" crossorigin src="/assets/index-ClO7mjjW.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-CeKOcg9-.css">
+  <script type="module" crossorigin src="/assets/index-DvgptwDe.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-ek8wjOcZ.css">
 </head>
 
 <body class="antialiased flex h-full text-base text-gray-700"
