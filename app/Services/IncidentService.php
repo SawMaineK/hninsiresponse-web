@@ -10,6 +10,9 @@ class IncidentService
     public function get(Request $request)
     {
         $query = Incident::filter($request);
+        if($request->has('aggregate')) {
+            return $query;
+        }
         $query->with(['township', 'city']);
         $perPage = $request->query('per_page', 10);
         return $query->paginate($perPage);

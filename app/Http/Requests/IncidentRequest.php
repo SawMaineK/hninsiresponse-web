@@ -21,15 +21,16 @@ use Illuminate\Http\Exceptions\HttpResponseException;
  *     @OA\Property(property="condition", type="string", example="Condition Example"),
  *     @OA\Property(property="description", type="string", example="Description Example"),
  *     @OA\Property(property="address", type="string", example="Address Example"),
- *     @OA\Property(property="city_id", type="integer", example="57"),
+ *     @OA\Property(property="city_id", type="integer", example="89"),
  *     @OA\Property(property="township_id", type="string", example="Township_id Example"),
- *     @OA\Property(property="country_id", type="integer", example="87"),
+ *     @OA\Property(property="country_id", type="integer", example="79"),
  *     @OA\Property(property="latitude", type="string", example="Latitude Example"),
  *     @OA\Property(property="longitude", type="string", example="Longitude Example"),
  *     @OA\Property(property="status", type="string", example="Status Example"),
  *     @OA\Property(property="severity", type="string", example="Severity Example"),
  *     @OA\Property(property="other_condition", type="string", example="Other_condition Example"),
- *     @OA\Property(property="type", type="string", example="Type Example")
+ *     @OA\Property(property="type", type="string", example="Type Example"),
+ *     @OA\Property(property="verified", type="string", example="Verified Example")
  * )
  */
 
@@ -59,11 +60,12 @@ class IncidentRequest extends FormRequest
 			'latitude'=>'',
 			'longitude'=>'',
 			'status'=>'required',
-			'severity'=>'sometimes',
+			'severity'=>'',
 			'created_at'=>'',
 			'updated_at'=>'',
 			'other_condition'=>'',
 			'type'=>'required',
+			'verified'=>'',
 
         ];
     }

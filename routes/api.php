@@ -52,3 +52,19 @@ Route::controller(App\Http\Controllers\IncidentController::class)
     });
  
 
+// Country Route Group
+Route::controller(App\Http\Controllers\CountryController::class)
+    ->prefix('country')->middleware([])
+    ->group(function () {
+        Route::get('/', 'show')->middleware([]);
+        Route::post('/', 'store')->middleware([]);
+        Route::get('/', 'index')->middleware([]);
+        Route::post('/', 'store')->middleware([]);
+        Route::get('/{country}', 'show')->middleware([]);
+        Route::put('/{country}', 'update')->middleware([]);
+        Route::delete('/{country}', 'destroy')->middleware([]);
+        Route::put('/{country}/restore', 'restore')->middleware([]);
+        Route::delete('/{country}/force-destory', 'forceDestroy')->middleware([]);
+    });
+ 
+

@@ -13,20 +13,18 @@
     <meta property="og:image" content="/media/app/og-image.jpg" />
     <meta property="og:image:alt" content="Hnin Si Response Team" />
     <meta name="author" content="SixTech Team" />
-    @yield('meta')
     <style type="text/css">
 
     </style>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
-  <script type="module" crossorigin src="/assets/index-DacfHW9H.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-ek8wjOcZ.css">
+  <script type="module" crossorigin src="/assets/index-bD93VYsD.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DiLYOpso.css">
 </head>
 
 <body class="antialiased flex h-full text-base text-gray-700"
     style="overflow:visible !important; margin-right:0 !important; position:static !important;">
     <div class="flex grow" id="root"></div>
-    @yield('content')
 </body>
 
 </html>
